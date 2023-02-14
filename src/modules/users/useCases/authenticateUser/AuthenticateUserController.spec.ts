@@ -44,7 +44,18 @@ describe('Authenticate User Controller', () => {
     });
 
     expect(loginResponse.status).toBe(401);
-    expect(loginResponse.body).toHaveProperty('message');
     expect(loginResponse.body.message).toEqual('Incorrect email or password');
+    expect(loginResponse.body.token).toBe(undefined);
+  });
+
+  it('should not be able to authenticate a non-existing user', async () => {
+    const responseToken = await request(app).post("/api/v1/sessions").send({
+      email: "anotheruser@email.com",
+      password: "anotherUserPassword",
+    });
+
+    expect(responseToken.status).toBe(401);
+    expect(responseToken.body.message).toEqual("Incorrect email or password");
+    expect(responseToken.body.token).toBe(undefined);
   });
 });
