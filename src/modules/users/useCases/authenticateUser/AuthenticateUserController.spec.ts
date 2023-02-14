@@ -10,6 +10,8 @@ let connection: Connection;
 describe('Authenticate User Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
+
+    await connection.dropDatabase();
     await connection.runMigrations();
 
     const id = uuid();
@@ -23,14 +25,13 @@ describe('Authenticate User Controller', () => {
   });
 
   afterAll(async () => {
-    await connection.dropDatabase();
     await connection.close();
   });
 
   it('should be able to authenticate', async () => {
     const loginResponse = await request(app).post('/api/v1/sessions').send({
       email: 'admin@rentx.com.br',
-      password: 'admin'
+      password: 'admin',
     });
 
     expect(loginResponse.body).toHaveProperty('token');
@@ -39,7 +40,7 @@ describe('Authenticate User Controller', () => {
   it('should be able to authenticate with invalid password', async () => {
     const loginResponse = await request(app).post('/api/v1/sessions').send({
       email: 'admin@rentx.com.br',
-      password: 'admin1'
+      password: 'admin1',
     });
 
     expect(loginResponse.status).toBe(401);
