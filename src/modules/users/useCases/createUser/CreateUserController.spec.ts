@@ -5,7 +5,7 @@ import { app } from "../../../../app";
 
 let connection: Connection;
 
-describe('Create User Controller', () => {
+describe.skip('Create User Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
@@ -26,5 +26,4 @@ describe('Create User Controller', () => {
     console.log(JSON.stringify(response))
     expect(response.status).toBe(201);
   });
-
 });

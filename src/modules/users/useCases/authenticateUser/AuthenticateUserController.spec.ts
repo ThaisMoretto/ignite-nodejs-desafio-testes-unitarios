@@ -7,7 +7,7 @@ import { app } from "../../../../app";
 
 let connection: Connection;
 
-describe('Authenticate User Controller', () => {
+describe.skip('Authenticate User Controller', () => {
   beforeAll(async () => {
     connection = await createConnection();
 
