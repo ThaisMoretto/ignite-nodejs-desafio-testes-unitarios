@@ -1,9 +1,9 @@
-import auth from "../../../../config/auth";
 import { InMemoryUsersRepository } from "../../repositories/in-memory/InMemoryUsersRepository";
 import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
 import { ICreateUserDTO } from "../createUser/ICreateUserDTO";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 import { IncorrectEmailOrPasswordError } from "./IncorrectEmailOrPasswordError";
+import auth from "../../../../config/auth";
 
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: InMemoryUsersRepository;

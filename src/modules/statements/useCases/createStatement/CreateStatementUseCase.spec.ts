@@ -6,7 +6,6 @@ import { InMemoryStatementsRepository } from "../../repositories/in-memory/InMem
 import { CreateStatementError } from "./CreateStatementError";
 import { CreateStatementUseCase } from "./CreateStatementUseCase";
 
-
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let createUserUseCase: CreateUserUseCase;
 let statementRepositoryInMemory: InMemoryStatementsRepository;
