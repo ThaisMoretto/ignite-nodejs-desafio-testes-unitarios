@@ -2,12 +2,11 @@ import request from "supertest";
 import { Connection, createConnection } from "typeorm";
 import { hash } from "bcryptjs";
 import { v4 as uuid } from "uuid";
-
 import { app } from "../../../../app";
 
 let connection: Connection;
 
-describe.skip('Authenticate User Controller', () => {
+describe("Authenticate User Controller", () => {
   beforeAll(async () => {
     connection = await createConnection();
 
@@ -28,27 +27,27 @@ describe.skip('Authenticate User Controller', () => {
     await connection.close();
   });
 
-  it('should be able to authenticate', async () => {
-    const loginResponse = await request(app).post('/api/v1/sessions').send({
-      email: 'admin@rentx.com.br',
-      password: 'admin',
+  it("should be able to authenticate", async () => {
+    const loginResponse = await request(app).post("/api/v1/sessions").send({
+      email: "admin@rentx.com.br",
+      password: "admin",
     });
 
-    expect(loginResponse.body).toHaveProperty('token');
+    expect(loginResponse.body).toHaveProperty("token");
   });
 
-  it('should be able to authenticate with invalid password', async () => {
-    const loginResponse = await request(app).post('/api/v1/sessions').send({
-      email: 'admin@rentx.com.br',
-      password: 'admin1',
+  it("should not be able to authenticate with invalid password", async () => {
+    const loginResponse = await request(app).post("/api/v1/sessions").send({
+      email: "admin@rentx.com.br",
+      password: "admin1",
     });
 
     expect(loginResponse.status).toBe(401);
-    expect(loginResponse.body.message).toEqual('Incorrect email or password');
+    expect(loginResponse.body.message).toEqual("Incorrect email or password");
     expect(loginResponse.body.token).toBe(undefined);
   });
 
-  it('should not be able to authenticate a non-existing user', async () => {
+  it("should not be able to authenticate a non-existing user", async () => {
     const responseToken = await request(app).post("/api/v1/sessions").send({
       email: "anotheruser@email.com",
       password: "anotherUserPassword",
