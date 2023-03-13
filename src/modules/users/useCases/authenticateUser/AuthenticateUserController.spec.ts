@@ -9,7 +9,6 @@ let connection: Connection;
 describe("Authenticate User Controller", () => {
   beforeAll(async () => {
     connection = await createConnection();
-
     await connection.dropDatabase();
     await connection.runMigrations();
 
@@ -24,6 +23,7 @@ describe("Authenticate User Controller", () => {
   });
 
   afterAll(async () => {
+    await connection.dropDatabase();
     await connection.close();
   });
 

@@ -28,6 +28,7 @@ describe("Show User Profile Controller", () => {
   });
 
   afterAll(async () => {
+    await connection.dropDatabase();
     await connection.close();
   });
 

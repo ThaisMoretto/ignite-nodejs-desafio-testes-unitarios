@@ -45,6 +45,7 @@ describe("Create Statement Controller", () => {
   });
 
   afterAll(async () => {
+    await connection.dropDatabase();
     await connection.close();
   });
 

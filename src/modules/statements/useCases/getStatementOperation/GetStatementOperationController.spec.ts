@@ -63,6 +63,7 @@ describe("Get Statement Operation Controller", () => {
   });
 
   afterAll(async () => {
+    await connection.dropDatabase();
     await connection.close();
   });
 

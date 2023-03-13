@@ -45,6 +45,7 @@ describe("Get Balance Controller", () => {
   });
 
   afterAll(async () => {
+    await connection.dropDatabase();
     await connection.close();
   });
 
